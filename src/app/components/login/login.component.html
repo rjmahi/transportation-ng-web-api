@@ -1,0 +1,70 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <img
+        src="assets/images/logo.png"
+        style="height:80px;width:100px;"
+        id="icon"
+        alt="User Icon"
+      />
+    </div>
+    <br /><br />
+    <form #loginForm="ngForm">
+      <div class="form-group">
+        <input
+          class="form-control fadeIn second"
+          type="text"
+          id="login"
+          name="login"
+          minlength="4"
+          maxlength="10"
+          required
+          [(ngModel)]="userName"
+          #login="ngModel"
+          placeholder="User Name"
+        />
+        <div
+          *ngIf="login.invalid && (login.dirty || login.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="login.errors.required">User Name is required.</div>
+          <div *ngIf="login.errors.minlength">
+            User Name must be at least 4 characters long.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          id="password"
+          class="form-control fadeIn second"
+          name="password"
+          minlength="4"
+          maxlength="10"
+          required
+          [(ngModel)]="userPassword"
+          placeholder="Password"
+          #passwrod="ngModel"
+        />
+        <div
+          *ngIf="passwrod.invalid && (passwrod.dirty || passwrod.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="passwrod.errors.required">Password is required.</div>
+          <div *ngIf="passwrod.errors.minlength">
+            Password must be at least 4 characters long.
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="fadeIn fourth"
+        (click)="submitCreds()"
+        class="btn btn-default"
+        [disabled]="loginForm.invalid"
+      >
+        Log In
+      </button>
+    </form>
+  </div>
+</div>

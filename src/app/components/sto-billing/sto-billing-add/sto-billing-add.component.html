@@ -1,0 +1,277 @@
+<!-- <app-header></app-header> -->
+
+<div class="container-fluid header-gap">
+  <form #stoForm="ngForm">
+    <div class="form-group">
+      <input
+        class="form-control"
+        type="text"
+        id="vinNum"
+        name="vinNum"
+        minlength="4"
+        maxlength="20"
+        required
+        [disabled]="allExceptLotNumDisabled"
+        [(ngModel)]="stoModel.vin_num"
+        #vinNum="ngModel"
+        placeholder="VIN Num. of Car"
+      />
+      <div
+        *ngIf="vinNum.invalid && (vinNum.dirty || vinNum.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="vinNum.errors.required">VIN Num. of Car is required.</div>
+        <div *ngIf="vinNum.errors.minlength">
+          VIN Num. of Car must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        id="rsyCode"
+        class="form-control"
+        name="rsyCode"
+        minlength="4"
+        maxlength="20"
+        required
+        [disabled]="allExceptLotNumDisabled"
+        [(ngModel)]="stoModel.rsy_code"
+        placeholder="Regional Stock Yard Code "
+        #rsyCode="ngModel"
+      />
+      <div
+        *ngIf="rsyCode.invalid && (rsyCode.dirty || rsyCode.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="rsyCode.errors.required">RSY Code is required.</div>
+        <div *ngIf="rsyCode.errors.minlength">
+          RSY Code must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        id="carModel"
+        class="form-control"
+        name="carModel"
+        minlength="4"
+        maxlength="20"
+        required
+        [disabled]="allExceptLotNumDisabled"
+        [(ngModel)]="stoModel.car_model"
+        placeholder="Car Model"
+        #carModel="ngModel"
+      />
+      <div
+        *ngIf="carModel.invalid && (carModel.dirty || carModel.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="carModel.errors.required">Car Model is required.</div>
+        <div *ngIf="carModel.errors.minlength">
+          Car Model must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        id="fscCode"
+        class="form-control"
+        name="fscCode"
+        minlength="4"
+        maxlength="20"
+        required
+        [disabled]="allExceptLotNumDisabled"
+        [(ngModel)]="stoModel.fsc"
+        placeholder="Factory Specification Code "
+        #fscCode="ngModel"
+      />
+      <div
+        *ngIf="fscCode.invalid && (fscCode.dirty || fscCode.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="fscCode.errors.required">FSC Code is required.</div>
+        <div *ngIf="fscCode.errors.minlength">
+          FSC Code must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        id="fscCodeName"
+        class="form-control"
+        name="fscCodeName"
+        minlength="4"
+        maxlength="20"
+        required
+        [disabled]="allExceptLotNumDisabled"
+        [(ngModel)]="stoModel.fsc_name"
+        placeholder="FSC Code Name"
+        #fscCodeName="ngModel"
+      />
+      <div
+        *ngIf="
+          fscCodeName.invalid && (fscCodeName.dirty || fscCodeName.touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="fscCodeName.errors.required">
+          FSC Code Name is required.
+        </div>
+        <div *ngIf="fscCodeName.errors.minlength">
+          FSC Code Name must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        id="extColor"
+        class="form-control"
+        name="extColor"
+        minlength="4"
+        maxlength="20"
+        required
+        [disabled]="allExceptLotNumDisabled"
+        [(ngModel)]="stoModel.ext_color"
+        placeholder="Ext. Color"
+        #extColor="ngModel"
+      />
+      <div
+        *ngIf="extColor.invalid && (extColor.dirty || extColor.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="extColor.errors.required">Ext. Color is required.</div>
+        <div *ngIf="extColor.errors.minlength">
+          Ext. Color must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        id="intColor"
+        class="form-control"
+        name="intColor"
+        minlength="4"
+        maxlength="20"
+        required
+        [disabled]="allExceptLotNumDisabled"
+        [(ngModel)]="stoModel.int_color"
+        placeholder="Int. Color"
+        #intColor="ngModel"
+      />
+      <div
+        *ngIf="intColor.invalid && (intColor.dirty || intColor.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="intColor.errors.required">Int. Color is required.</div>
+        <div *ngIf="intColor.errors.minlength">
+          Int. Color must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        id="stoValue"
+        class="form-control"
+        name="stoValue"
+        minlength="4"
+        maxlength="20"
+        required
+        [disabled]="allExceptLotNumDisabled"
+        [(ngModel)]="stoModel.sto_value"
+        placeholder="STO Value"
+        #stoValue="ngModel"
+      />
+      <div
+        *ngIf="stoValue.invalid && (stoValue.dirty || stoValue.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="stoValue.errors.required">STO Value is required.</div>
+        <div *ngIf="stoValue.errors.minlength">
+          STO Value must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        id="odNum"
+        class="form-control"
+        name="odNum"
+        minlength="4"
+        maxlength="20"
+        required
+        [disabled]="allExceptLotNumDisabled"
+        [(ngModel)]="stoModel.odn"
+        placeholder="Offer Document Number"
+        #odNum="ngModel"
+      />
+      <div
+        *ngIf="odNum.invalid && (odNum.dirty || odNum.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="odNum.errors.required">
+          Offer Document Number is required.
+        </div>
+        <div *ngIf="odNum.errors.minlength">
+          Offer Document Number must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        id="lotNum"
+        class="form-control"
+        name="lotNum"
+        minlength="4"
+        maxlength="20"
+        [disabled]="lotNumDisabled"
+        [required]="lotNumRequired"
+        [hidden]="lotNumHidden"
+        [(ngModel)]="stoModel.lot_num"
+        placeholder="Lot Number"
+        #lotNum="ngModel"
+      />
+      <div
+        *ngIf="lotNum.invalid && (lotNum.dirty || lotNum.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="lotNum.errors.required">
+          Lot Number is required.
+        </div>
+        <div *ngIf="lotNum.errors.minlength">
+          Lot Number must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="fadeIn fourth"
+      (click)="saveSTO()"
+      class="btn btn-default"
+      [disabled]="stoForm.invalid"
+    >
+      {{ saveButtonName }}
+    </button>
+    <button type="button" class="btn btn-default" (click)="resetForm()" [hidden]="resetButtonHidden">
+      {{ resetButtonName }}
+    </button>
+  </form>
+</div>
