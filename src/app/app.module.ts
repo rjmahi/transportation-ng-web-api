@@ -12,7 +12,6 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { A11yModule } from "@angular/cdk/a11y";
 import { BidiModule } from "@angular/cdk/bidi";
@@ -20,7 +19,6 @@ import { ObserversModule } from "@angular/cdk/observers";
 import { OverlayModule } from "@angular/cdk/overlay";
 import { PlatformModule } from "@angular/cdk/platform";
 import { PortalModule } from "@angular/cdk/portal";
-import { ScrollDispatchModule } from "@angular/cdk/scrolling";
 import { CdkStepperModule } from "@angular/cdk/stepper";
 import { CdkTableModule } from "@angular/cdk/table";
 import {
@@ -54,10 +52,6 @@ import {
 } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MenuListItemComponent } from "./components/menu-list-item/menu-list-item.component";
-// import { FirstComponent } from './first/first.component';
-// import { SecondComponent } from './second/second.component';
-// import { ThirdComponent } from './third/third.component';
-// import { FourthComponent } from './fourth/fourth.component';
 import { HomeComponent } from "./components/home/home.component";
 import { NavService } from "./services/nav.service";
 import { TopNavComponent } from "./components/top-nav/top-nav.component";
@@ -77,7 +71,6 @@ import { HttpClientModule } from "@angular/common/http";
     OverlayModule,
     PlatformModule,
     PortalModule,
-    ScrollDispatchModule,
     CdkStepperModule,
     CdkTableModule,
 
@@ -139,7 +132,9 @@ export class MaterialModule {}
     AppRoutingModule,
     HttpClientModule
   ],
+  entryComponents: [ConfirmationDialogComponent],
+
   bootstrap: [AppComponent],
-  providers: [NavService, DecimalPipe]
+  providers: [NavService, DecimalPipe, ConfirmationDialogService]
 })
 export class AppModule {}

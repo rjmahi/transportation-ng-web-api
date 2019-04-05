@@ -1,0 +1,11 @@
+.right-align {
+  flex: 1 1 auto;
+}
+
+.bg-color-black {
+  background-color: black;
+}
+
+.color-white {
+  color: whitesmoke;
+}

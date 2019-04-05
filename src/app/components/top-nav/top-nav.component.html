@@ -1,6 +1,8 @@
-<mat-toolbar color="primary" class="mat-elevation-z1">
-  <button mat-icon-button id="menu" (click)="navService.openNav()">
-    <mat-icon>menu</mat-icon>
+<mat-toolbar class="mat-elevation-z1 bg-color-black">
+  <button mat-icon-button id="menu" (click)="toggleNav()">
+    <mat-icon class="color-white">menu</mat-icon>
   </button>
-  <span>Dynamic Expanding Nav Drawer Example</span>
+  <span class="right-align"></span>
+  <p class="color-white">{{ userName }}</p>
+  <!-- <span>Trans Company</span> -->
 </mat-toolbar>

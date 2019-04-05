@@ -49,9 +49,14 @@ export class MenuListItemComponent implements OnInit {
   }
 
   onItemSelected(item: NavItem) {
+    if (item.displayName === "Logout") {
+      localStorage.setItem("login", "false");
+      localStorage.setItem("user", "");
+      this.navService.closeNav();
+    }
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
-      this.navService.closeNav();
+      // this.navService.closeNav();
     }
     if (item.children && item.children.length) {
       this.expanded = !this.expanded;

@@ -182,8 +182,40 @@
     </div>
 
     <div class="form-group">
+      <div class="input-group">
+        <button
+          class="btn btn-outline-secondary calendar"
+          (click)="dp.toggle()"
+          type="button"
+        ></button>
+        <input
+          class="form-control"
+          placeholder="Choose a date"
+          id="stoDate"
+          [disabled]="allExceptLotNumDisabled"
+          #stoDate="ngModel"
+          name="dp"
+          [(ngModel)]="selectedDate"
+          ngbDatepicker
+          #dp="ngbDatepicker"
+        />
+        <div class="input-group-append"></div>
+      </div>
+
+      <div
+        *ngIf="stoDate.invalid && (stoDate.dirty || stoDate.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="stoDate.errors.required">STO Date is required.</div>
+        <div *ngIf="stoDate.errors.minlength">
+          STO Date must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
       <input
-        type="text"
+        type="number"
         id="stoValue"
         class="form-control"
         name="stoValue"
@@ -270,7 +302,12 @@
     >
       {{ saveButtonName }}
     </button>
-    <button type="button" class="btn btn-default" (click)="resetForm()" [hidden]="resetButtonHidden">
+    <button
+      type="button"
+      class="btn btn-default"
+      (click)="resetForm()"
+      [hidden]="resetButtonHidden"
+    >
       {{ resetButtonName }}
     </button>
   </form>

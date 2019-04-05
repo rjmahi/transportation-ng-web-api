@@ -22,6 +22,8 @@ export class NavService {
   }
 
   public openNav() {
-    this.appDrawer.open();
+    if (localStorage.getItem("login") === "true") {
+      this.appDrawer.open();
+    }
   }
 }

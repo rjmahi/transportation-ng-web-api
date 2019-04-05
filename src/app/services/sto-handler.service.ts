@@ -1,12 +1,12 @@
-import { Injectable, PipeTransform } from '@angular/core';
+import { Injectable, PipeTransform } from "@angular/core";
 
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { StoApiAccessService } from './sto-api-access.service';
-import { CompactSTOModel } from '../models/sto-model';
-import { DecimalPipe } from '@angular/common';
-import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
-import { SortDirection } from '../directives/sortable.directive';
-import { appInitializerFactory } from '@angular/platform-browser/src/browser/server-transition';
+import { BehaviorSubject, Observable, of, Subject } from "rxjs";
+import { StoApiAccessService } from "./sto-api-access.service";
+import { CompactSTOModel } from "../models/sto-model";
+import { DecimalPipe } from "@angular/common";
+import { debounceTime, delay, switchMap, tap } from "rxjs/operators";
+import { SortDirection } from "../directives/sortable.directive";
+import { appInitializerFactory } from "@angular/platform-browser/src/browser/server-transition";
 
 interface SearchResult {
   stoList: CompactSTOModel[];
@@ -30,12 +30,12 @@ function sort(
   column: string,
   direction: string
 ): CompactSTOModel[] {
-  if (direction === '') {
+  if (direction === "") {
     return stoList;
   } else {
     return [...stoList].sort((a, b) => {
       const res = compare(a[column], b[column]);
-      return direction === 'asc' ? res : -res;
+      return direction === "asc" ? res : -res;
     });
   }
 }
@@ -44,11 +44,12 @@ function matches(stoModel: CompactSTOModel, term: string, pipe: PipeTransform) {
   return (
     stoModel.vin_num.toLowerCase().includes(term) ||
     stoModel.ext_color.toLowerCase().includes(term) ||
+    stoModel.int_color.toLowerCase().includes(term) ||
     stoModel.fsc_name.toLowerCase().includes(term)
   );
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class StoHandlerService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
@@ -59,9 +60,9 @@ export class StoHandlerService {
   private _state: State = {
     page: 1,
     pageSize: 4,
-    searchTerm: '',
-    sortColumn: '',
-    sortDirection: ''
+    searchTerm: "",
+    sortColumn: "",
+    sortDirection: ""
   };
 
   constructor(private pipe: DecimalPipe, public api: StoApiAccessService) {
@@ -93,7 +94,7 @@ export class StoHandlerService {
         }
       },
       error => {
-        console.log('Un resolved error - ' + error);
+        console.log("Un resolved error - " + error);
       }
     );
   }

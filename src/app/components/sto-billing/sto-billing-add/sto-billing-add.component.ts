@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { STOModel } from "src/app/models/sto-model";
 import { StoApiAccessService } from "src/app/services/sto-api-access.service";
 import { UUID } from "angular2-uuid";
-import { NgForm } from "@angular/forms";
+import { NgForm, FormControl } from "@angular/forms";
 import { Location } from "@angular/common";
 @Component({
   selector: "app-sto-billing-add",
@@ -36,13 +36,17 @@ export class StoBillingAddComponent implements OnInit {
     rsy_code: "",
     sto_created_by: "",
     sto_created_date: "",
-    sto_date: "",
+    sto_date: new FormControl(new Date()) + "",
     sto_updated_by: "",
     sto_updated_date: "",
     sto_value: null,
     vin_num: ""
   };
 
+  selectedDate: any;
+
+  date = new FormControl(new Date());
+  maxDate = new Date(2020, 0, 1);
   saveButtonName = "Ok";
   resetButtonName = "Reset";
   resetButtonHidden = false;
@@ -135,6 +139,7 @@ export class StoBillingAddComponent implements OnInit {
   saveSTO() {
     const user = localStorage.getItem("user");
     const timeStamp = "11-12-2018 12:12:32";
+    // const timeStamp = Date.now() + "";
     if (this.screenType === "stoAdd") {
       this.stoModel.first_mile_guid = UUID.UUID();
       this.stoModel.sto_created_by = user;
@@ -150,12 +155,25 @@ export class StoBillingAddComponent implements OnInit {
       this.stoModel.receipt_created_date = timeStamp;
     }
     if (this.screenType === "stoAdd" && this.userName === "userB") {
+      this.stoModel.sto_date =
+        this.selectedDate.day +
+        "-" +
+        this.selectedDate.month +
+        "-" +
+        this.selectedDate.year;
       this.saveSTOToDB();
     } else if (
       (this.screenType === "stoEdit" && this.userName === "userB") ||
       (this.screenType === "gateOut" && this.userName === "userB") ||
       (this.screenType === "receive" && this.userName === "userA")
     ) {
+      this.stoModel.sto_date =
+        this.selectedDate.day +
+        "-" +
+        this.selectedDate.month +
+        "-" +
+        this.selectedDate.year;
+
       this.updateSTOToDB();
     } else {
       this.location.back();
@@ -167,6 +185,8 @@ export class StoBillingAddComponent implements OnInit {
       response => {
         if (response != null) {
           this.stoModel = response;
+          this.selectedDate = this.stoModel.sto_date;
+          console.log(this.selectedDate);
         }
       },
       error => {

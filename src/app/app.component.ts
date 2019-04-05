@@ -26,7 +26,7 @@ export class AppComponent implements AfterViewInit {
       children: [
         {
           displayName: "Home",
-          iconName: "group",
+          iconName: "home",
           route: "/home"
         },
         {
@@ -36,29 +36,34 @@ export class AppComponent implements AfterViewInit {
         },
         {
           displayName: "Gate Out pending",
-          iconName: "speaker_notes",
+          iconName: "group",
           route: "/sto/gateOut"
         },
         {
           displayName: "Gate Out History",
-          iconName: "speaker_notes",
+          iconName: "group",
           route: "/sto/gateOutHistory"
         },
         {
           displayName: "Goods Receipt Pending",
-          iconName: "feedback",
+          iconName: "group",
           route: "/sto/receive"
         },
         {
           displayName: "Goods Receipt History",
-          iconName: "feedback",
+          iconName: "group",
           route: "/sto/receiveHistory"
         }
       ]
     },
     {
-      displayName: "Disney",
-      iconName: "videocam"
+      displayName: "Last Mile",
+      iconName: "group"
+    },
+    {
+      displayName: "Logout",
+      iconName: "logout",
+      route: "/"
     }
   ];
 
